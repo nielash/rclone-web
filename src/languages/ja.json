@@ -348,5 +348,6 @@
     "app.languageSection": "言語",
     "app.remotesSection": "リモート",
     "app.checkRemoteUsage": "使用状況を自動で確認",
-    "app.checkRemoteUsageDescription": "ダッシュボードとリモートページに使用状況を表示するため、すべてのリモートに接続します"
+    "app.checkRemoteUsageDescription": "ダッシュボードとリモートページに使用状況を表示するため、すべてのリモートに接続します",
+    "remotes.checkUsage": "使用状況を確認"
 }

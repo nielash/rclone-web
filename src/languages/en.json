@@ -348,5 +348,6 @@
     "app.languageSection": "Language",
     "app.remotesSection": "Remotes",
     "app.checkRemoteUsage": "Check usage automatically",
-    "app.checkRemoteUsageDescription": "Connects to every remote to show its usage on the dashboard and remotes page"
+    "app.checkRemoteUsageDescription": "Connects to every remote to show its usage on the dashboard and remotes page",
+    "remotes.checkUsage": "Check usage"
 }

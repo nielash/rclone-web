@@ -348,5 +348,6 @@
     "app.languageSection": "Langue",
     "app.remotesSection": "Dépôts distants",
     "app.checkRemoteUsage": "Vérifier l'utilisation automatiquement",
-    "app.checkRemoteUsageDescription": "Se connecte à chaque dépôt distant pour afficher son utilisation sur le tableau de bord et la page des dépôts distants"
+    "app.checkRemoteUsageDescription": "Se connecte à chaque dépôt distant pour afficher son utilisation sur le tableau de bord et la page des dépôts distants",
+    "remotes.checkUsage": "Vérifier l'utilisation"
 }

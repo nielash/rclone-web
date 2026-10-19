@@ -348,5 +348,6 @@
     "app.languageSection": "语言",
     "app.remotesSection": "远程存储",
     "app.checkRemoteUsage": "自动检查用量",
-    "app.checkRemoteUsageDescription": "连接到每个远程存储，以便在仪表盘和远程存储页面上显示其用量"
+    "app.checkRemoteUsageDescription": "连接到每个远程存储，以便在仪表盘和远程存储页面上显示其用量",
+    "remotes.checkUsage": "检查用量"
 }

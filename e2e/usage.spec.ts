@@ -37,7 +37,16 @@ test('does not check remote usage unless enabled', async ({ page }) => {
     const row = await openRemotesPage(page)
     await page.waitForTimeout(1000)
     expect(aboutRequests).toEqual([])
-    await expect(row.getByText('--', { exact: true })).toBeVisible()
+    await expect(row.getByRole('button', { name: 'Check usage of test-usage' })).toBeVisible()
+})
+
+test('checks one remote from its usage cell', async ({ page }) => {
+    const aboutRequests = countAboutRequests(page)
+    const row = await openRemotesPage(page)
+    await row.getByRole('button', { name: 'Check usage of test-usage' }).click()
+    await expect.poll(() => aboutRequests).toEqual(['test-usage:'])
+    await expect(row.getByRole('button', { name: 'Check usage of test-usage' })).toBeHidden()
+    await expect(page).toHaveURL(/\/remotes$/)
 })
 
 test('checks remote usage once enabled in settings', async ({ page }) => {
