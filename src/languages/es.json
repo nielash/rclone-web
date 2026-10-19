@@ -345,5 +345,8 @@
     "app.settingsTitle": "Ajustes",
     "app.themeSection": "Tema",
     "app.darkMode": "Modo oscuro",
-    "app.languageSection": "Idioma"
+    "app.languageSection": "Idioma",
+    "app.remotesSection": "Remotos",
+    "app.checkRemoteUsage": "Comprobar el uso automáticamente",
+    "app.checkRemoteUsageDescription": "Se conecta a cada remoto para mostrar su uso en el panel y en la página de remotos"
 }

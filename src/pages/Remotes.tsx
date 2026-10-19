@@ -29,9 +29,10 @@ import {
 } from '@/components/ui/table'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { useT } from '@/lib/i18n'
+import { useStore } from '@/lib/store'
 import { cn } from '@/lib/ui'
 import rclone from '@/rclone/client'
-import { fetchRemotesList, fetchRemoteUsage, type UsageStatus } from '@/rclone/usage'
+import { fetchRemotesList, fetchRemoteUsage, supportsAbout, type UsageStatus } from '@/rclone/usage'
 
 export function RemotesPage() {
     const t = useT()
@@ -55,6 +56,7 @@ export function RemotesPage() {
         )
     }, [remotes, search])
 
+    const checkRemoteUsage = useStore((state) => state.checkRemoteUsage)
     const usageQueries = useQueries({
         queries: remotes.map((remote) => ({
             queryKey: ['remotes', 'usage', remote.name] as const,
@@ -62,6 +64,7 @@ export function RemotesPage() {
                 fetchRemoteUsage(qName, remote.type),
             staleTime: 5 * 60 * 1000,
             retry: false,
+            enabled: checkRemoteUsage || !supportsAbout(remote.type),
         })),
     })
 
