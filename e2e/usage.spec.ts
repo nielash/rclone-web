@@ -32,7 +32,25 @@ async function openRemotesPage(page: Page) {
     return row
 }
 
-test('does not check remote usage unless enabled', async ({ page }) => {
+// Turns the "Check usage automatically" setting off before the app loads.
+async function disableUsageChecks(page: Page) {
+    await page.addInitScript(() => {
+        const key = 'lite-auth-store'
+        const stored = JSON.parse(localStorage.getItem(key) ?? '{"state":{},"version":0}')
+        stored.state.checkRemoteUsage = false
+        localStorage.setItem(key, JSON.stringify(stored))
+    })
+}
+
+test('checks remote usage by default', async ({ page }) => {
+    const aboutRequests = countAboutRequests(page)
+    const row = await openRemotesPage(page)
+    await expect.poll(() => aboutRequests).toContain('test-usage:')
+    await expect(row.getByRole('button', { name: 'Check usage of test-usage' })).toBeHidden()
+})
+
+test('does not check remote usage when disabled', async ({ page }) => {
+    await disableUsageChecks(page)
     const aboutRequests = countAboutRequests(page)
     const row = await openRemotesPage(page)
     await page.waitForTimeout(1000)
@@ -41,6 +59,7 @@ test('does not check remote usage unless enabled', async ({ page }) => {
 })
 
 test('checks one remote from its usage cell', async ({ page }) => {
+    await disableUsageChecks(page)
     const aboutRequests = countAboutRequests(page)
     const row = await openRemotesPage(page)
     await row.getByRole('button', { name: 'Check usage of test-usage' }).click()
@@ -50,6 +69,7 @@ test('checks one remote from its usage cell', async ({ page }) => {
 })
 
 test('checks remote usage once enabled in settings', async ({ page }) => {
+    await disableUsageChecks(page)
     const aboutRequests = countAboutRequests(page)
     await openRemotesPage(page)
     await page.locator('header img').first().click()

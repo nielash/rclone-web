@@ -26,7 +26,7 @@ export const useStore = create<Store>()(
             pass: '',
             bannerDismissed: false,
             language: undefined,
-            checkRemoteUsage: false,
+            checkRemoteUsage: true,
             hasHydrated: false,
         }),
         {
